@@ -1,48 +1,73 @@
-document.getElementById('validationFormulaire').addEventListener('submit', function(event){
-    event.preventDefault(); // ce qui empêche la soumission par défaut du formaulaire
+document.addEventListener('DOMContentLoaded', function() {
+    const form = document.getElementById('validationFormulaire');
+    const prenomInput = document.getElementById('prenom');
+    const nomContainer = document.getElementById('nomContainer');
+    const emailContainer = document.getElementById('emailContainer');
+    const passwordContainer = document.getElementById('passwordContainer');
+    const messageSucces = document.getElementById('MessageSucces');
+    const prenomErreur = document.getElementById('prenomErreur');
+    const nomErreur = document.getElementById('nomErreur');
+    const emailErreur = document.getElementById('emailErreur');
+    const passwordErreur = document.getElementById('passwordErreur');
 
-// Recupère les valeurs des champs du formulaire
-const prenom =document.getElementById('prenom').value.trim();
-const nom = document.getElementById('nom').value.trim();
-const email = document.getElementById('email').value.trim();
-const password = document.getElementById('password').value.trim();
+    // Masquer tous les champs sauf le premier au chargement initial
+    nomContainer.style.display = 'none';
+    emailContainer.style.display = 'none';
+    passwordContainer.style.display = 'none';
 
-// variable de validation
-let Validation = true;
- // Réinitialisation des messages d'erreur
+    form.addEventListener('submit', function(event) {
+        event.preventDefault(); // Empêche la soumission par défaut du formulaire
 
-document.getElementById('prenomErreur').textContent ='';
-document.getElementById('nomErreur').textContent ='';
-document.getElementById('emailErreur').textContent = '';
-document.getElementById('passwordErreur').textContent ='';
+        let isValid = true;
 
+        // Validation du prénom
+        const prenom = prenomInput.value.trim();
+        if (prenom.length < 3 || prenom.length > 15) {
+            isValid = false;
+            prenomErreur.textContent = 'Le prénom doit comporter entre 3 et 15 caractères.';
+        } else {
+            prenomErreur.textContent = '';
+            // Afficher le champ suivant (Nom)
+            nomContainer.style.display = 'block';
+        }
 
-// validation du nom
-if (nom.length < 3 || nom.length > 15 ) {
-     Validation = false;
-     document.getElementById('nomErreur').textContent = 'Le nom doit comporter entre 3 et 15 caractères .';
+        // Validation du nom
+        const nom = document.getElementById('nom').value.trim();
+        if (isValid && (nom.length < 3 || nom.length > 15)) {
+            isValid = false;
+            nomErreur.textContent = 'Le nom doit comporter entre 3 et 15 caractères.';
+        } else {
+            nomErreur.textContent = '';
+            // Afficher le champ suivant (Adresse email)
+            emailContainer.style.display = 'block';
+        }
 
-}
+        // Validation de l'adresse email
+        const email = document.getElementById('email').value.trim();
+        const emailPattern = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+        if (isValid && !emailPattern.test(email)) {
+            isValid = false;
+            emailErreur.textContent = 'Veuillez entrer une adresse email valide.';
+        } else {
+            emailErreur.textContent = '';
+            // Afficher le champ suivant (Mot de passe)
+            passwordContainer.style.display = 'block';
+        }
 
-// validation du mot de passe
- const emailPatern = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
- if (!emailPatern.test(email)) {
-   Validation = false;
-   document.getElementById('emailErreur').textContent = 'veuillez entrer une adresse email valide';
- }
+        // Validation du mot de passe
+        const password = document.getElementById('password').value.trim();
+        if (isValid && password.length < 8) {
+            isValid = false;
+            passwordErreur.textContent = 'Le mot de passe doit comporter au moins 8 caractères.';
+        } else {
+            passwordErreur.textContent = '';
+        }
 
- // validation du mot de passe
- if(password.length < 8){
-    Validation = false;
-    document.getElementById('passwordErreur').textContent = 'Le mot de passe doit comporter au moins 8 caractères .';
-
- }
-
- // affichage de message de succés ou des erreurs 
-
- if (Validation) {
-   document.getElementById('MessageSucces').textContent = 'Le formulaire a été bien soumis ';
-   document.getElementById('validationFormulaire').style.display = 'none';
- }
-
+        // Si tous les champs sont valides, afficher le message de succès
+        if (isValid) {
+            messageSucces.textContent = 'Le formulaire a été bien soumis.';
+            messageSucces.style.display = 'block';
+            form.reset(); // Réinitialisation du formulaire
+        }
+    });
 });

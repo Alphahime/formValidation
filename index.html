@@ -1,35 +1,32 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="fr">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="style.css">
-    <title>Formulaire de validation </title>
+    <title>Formulaire de validation progressive</title>
 </head>
 <body>
-   
     <div class="formulaire-conteneur">
-        <h1 class="titreFormulaire">Formulaire de validation</h1>
+        <h1 class="titreFormulaire">Formulaire de validation progressive</h1>
         <form id="validationFormulaire" action="">
-         <div>
-            <label for="prenom">Prenom </label>
-            <input type="text" id="prenom"  name="prenom">
-            <span id="prenomErreur" class="erreur-message"></span>
-         </div>
-            <div>
-                <label for="nom">Nom</label>
+            <div class="field-container" id="prenomContainer">
+                <label for="prenom">Prénom :</label>
+                <input type="text" id="prenom" name="prenom">
+                <span id="prenomErreur" class="erreur-message"></span>
+            </div>
+            <div class="field-container" id="nomContainer" style="display: none;">
+                <label for="nom">Nom :</label>
                 <input type="text" id="nom" name="nom">
                 <span id="nomErreur" class="erreur-message"></span>
-
             </div>
-            <div>
-                <label for="email">Adresse email </label>
+            <div class="field-container" id="emailContainer" style="display: none;">
+                <label for="email">Adresse email :</label>
                 <input type="email" id="email" name="email">
                 <span id="emailErreur" class="erreur-message"></span>
-
             </div>
-            <div>
-                <label for="password">Mot de passe </label>
+            <div class="field-container" id="passwordContainer" style="display: none;">
+                <label for="password">Mot de passe :</label>
                 <input type="password" id="password" name="password">
                 <span id="passwordErreur" class="erreur-message"></span>
             </div>
