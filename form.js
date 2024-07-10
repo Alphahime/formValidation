@@ -2,10 +2,10 @@ document.getElementById('validationFormulaire').addEventListener('submit', funct
     event.preventDefault(); // ce qui empêche la soumission par défaut du formaulaire
 
 // Recupère les valeurs des champs du formulaire
-const prenom =document.getElementById('prenom').value;
-const nom = document.getElementById('nom').value;
-const email = document.getElementById('email').value;
-const password = document.getElementById('password').value;
+const prenom =document.getElementById('prenom').value.trim();
+const nom = document.getElementById('nom').value.trim();
+const email = document.getElementById('email').value.trim();
+const password = document.getElementById('password').value.trim();
 
 // variable de validation
 let Validation = true;
