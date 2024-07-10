@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="style.css">
+    <title>Formulaire de validation </title>
+</head>
+<body>
+   
+    <div class="formulaire-conteneur">
+        <h1 class="titreFormulaire">Formulaire de validation</h1>
+        <form id="validationFormulaire" action="">
+         <div>
+            <label for="prenom">Prenom :</label>
+            <input type="text" id="prenom"  name="prenom">
+            <span id="prenomErreur" class="erreur-message"></span>
+         </div>
+            <div>
+                <label for="nom">Nom:</label>
+                <input type="text" id="nom" name="nom">
+                <span id="nomErreur" class="erreur-message"></span>
+
+            </div>
+            <div>
+                <label for="email">Adresse email :</label>
+                <input type="email" id="email" name="email">
+                <span id="emailErreur" class="erreur-message"></span>
+
+            </div>
+            <div>
+                <label for="password">Mot de passe :</label>
+                <input type="password" id="password" name="password">
+                <span id="passwordErreur" class="erreur-message"></span>
+            </div>
+            <div>
+                <button type="submit">Soumettre</button>
+            </div>
+        </form>
+        <div id="MessageSucces" class="message-succes"></div>
+    </div>
+    <div class="overlay"></div>
+    <script src="form.js"></script>
+</body>
+</html>
